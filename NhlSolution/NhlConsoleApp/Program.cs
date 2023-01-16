@@ -8,7 +8,7 @@ using NhlSystemClassLibrary;
 try
 {
     // Create a new Team instance
-    Team oilers = new Team("Oilers","Edmonton","Rogers Place", Conference.Western, Division.Pacific);
+    Team oilers = new Team("Oilers","Edmonton","Rogers Place", Conference.Western, division.Pacific);
     // Print the Team Name
     //Console.WriteLine($"Team Name: {currentTeam.Name}");
     Console.WriteLine(oilers);
