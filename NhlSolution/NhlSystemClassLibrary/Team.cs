@@ -33,17 +33,17 @@ namespace NhlSystemClassLibrary
                 if (!Regex.IsMatch(value,lettersOnlyPattern))
                 {
                     throw new ArgumentException("Name cannot only contain letters.");
-                }
+            }
                 
                 _name = value.Trim();   // remove leading "   hello" and trailing "hello    " white spaces
-            }
+        }
         }
 
         public string City
         {
-            get
-            {
-                return _city;
+            get 
+            { 
+                return _city; 
             }
             set
             {
@@ -73,17 +73,17 @@ namespace NhlSystemClassLibrary
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException(nameof(Arena), "Arena value cannot be blank.");
-                }
+        }
                 _arena = value.Trim();
             }
         }
         // Define auto-implemented properties for: Conference, Division
         public Conference Conference { get; set; }
-        public Division Division { get; set; }
+        public division Division { get; set; }
 
 
         // Greedy constructor
-        public Team(string Name, string city, string arena, Conference conference, Division division)
+        public Team(string Name, string city, string arena, Conference conference, division division)
         {
             this.Name = Name;
             City = city;
