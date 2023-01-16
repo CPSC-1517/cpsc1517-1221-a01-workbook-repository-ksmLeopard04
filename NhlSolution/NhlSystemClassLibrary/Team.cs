@@ -33,10 +33,10 @@ namespace NhlSystemClassLibrary
                 if (!Regex.IsMatch(value,lettersOnlyPattern))
                 {
                     throw new ArgumentException("Name cannot only contain letters.");
-            }
+                }
                 
                 _name = value.Trim();   // remove leading "   hello" and trailing "hello    " white spaces
-        }
+            }
         }
 
         public string City
