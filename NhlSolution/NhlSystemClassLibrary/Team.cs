@@ -26,24 +26,24 @@ namespace NhlSystemClassLibrary
                 // Validate new value is not blank and contains only letters a-z
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(Name),"Name cannot be blank.");
+                    throw new ArgumentNullException(nameof(Name), "Name cannot be blank.");
                 }
                 // Validate new value contains only letters a-z
                 string lettersOnlyPattern = @"^[a-zA-Z ]{1,}$";
-                if (!Regex.IsMatch(value,lettersOnlyPattern))
+                if (!Regex.IsMatch(value, lettersOnlyPattern))
                 {
                     throw new ArgumentException("Name cannot only contain letters.");
                 }
-                
+
                 _name = value.Trim();   // remove leading "   hello" and trailing "hello    " white spaces
             }
         }
 
         public string City
         {
-            get 
-            { 
-                return _city; 
+            get
+            {
+                return _city;
             }
             set
             {
@@ -73,13 +73,40 @@ namespace NhlSystemClassLibrary
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException(nameof(Arena), "Arena value cannot be blank.");
-        }
+                }
                 _arena = value.Trim();
             }
         }
         // Define auto-implemented properties for: Conference, Division
         public Conference Conference { get; set; }
         public division Division { get; set; }
+
+        // TODO: Define auto-implemented property for players: List<Player> with a private set
+        public List<Player> players { get; private set; } //= new List<Player>();
+
+        // TODO: Add method to add a new Player
+        // 1) Validate newPlayer is not null
+        // 2) Validate newPlayer PlayerNo is not already on the players list
+        // 3) Validate players list is not already full (max 23 players per team)
+        public void AddPlayer(Player newPlayer)
+        {
+            if (newPlayer == null)
+            {
+                throw new ArgumentNullException(nameof(AddPlayer), "Player cannot be null");
+            }
+            foreach (var existingPlayer in players)
+            {
+                if (newPlayer.PlayerNo == existingPlayer.PlayerNo)
+                {
+                    throw new ArgumentException($"PlayerNo {newPlayer.PlayerNo} is already in the team");
+                }
+            }
+            if (players.Count == 23)
+            {
+                throw new ArgumentException("Team is full. Cannot add anymore players.");
+            }
+            players.Add(newPlayer);
+        }
 
 
         // Greedy constructor
@@ -90,6 +117,7 @@ namespace NhlSystemClassLibrary
             Arena = arena;
             Conference = conference;
             Division = division;
+            players = new List<Player>();
         }
 
         public override string ToString()

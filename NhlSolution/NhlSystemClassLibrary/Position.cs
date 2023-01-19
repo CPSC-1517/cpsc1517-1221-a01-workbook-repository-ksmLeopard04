@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace NhlSystemClassLibrary
 {
-    public enum Conference2
+    public enum Position
     {
-        Eastern,
-        Western
+        C,
+        LW,
+        RW,
+        D,
+        G
     }
 }
